@@ -1,3 +1,6 @@
+#Author :Tharindra Galahena
+#Project:security app using webcam
+#Date   :
 
 import sys
 import time

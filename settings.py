@@ -1,6 +1,6 @@
 #Author :Tharindra Galahena
-#Project:simple screen saver daemon in python for linux
-#Date   :12/04/2012
+#Project:security app using webcam
+#Date   :
 
 tty = ""
 tp = ""

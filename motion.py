@@ -1,3 +1,7 @@
+#Author :Tharindra Galahena
+#Project:security app using webcam
+#Date   :
+
 import datetime
 import gobject
 import gettext
