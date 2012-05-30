@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 #Author :Tharindra Galahena
 #Project:security app using webcam
 #Date   :
@@ -36,6 +38,7 @@ def cam(a, b):
 				pygame.display.quit()
 				f = True
 		if f: 
+			app.set_cam()
 			break
 		sr = motion.get_image()
 		camshot = pygame.image.frombuffer(sr.tostring(), res, "RGB")
