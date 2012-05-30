@@ -1,9 +1,6 @@
 import Image
 import sys
-import datetime
-import gobject
-import gettext
-import Image
+#import Image
 import sys, os
 import wx
 import time
@@ -20,14 +17,23 @@ class Main(wx.App):
   
    def OnInit(self):
        self.tty, self.tp, self.timer, self.sen = settings.read_settings("setings")
-       window = wx.Frame(None)
-       self.settings_window = wx.Frame(None)
-       window.SetTitle("Security")
-       window.SetSize((300, 100))
+       window = wx.Frame(None, style=wx.DEFAULT_FRAME_STYLE ^ wx.RESIZE_BORDER)
+       self.settings_window = wx.Frame(window, style=wx.DEFAULT_FRAME_STYLE ^ wx.RESIZE_BORDER)
+       window.SetTitle("inf0_warri0r - motion")
+       window.SetSize((300, 150))
        window.Bind(wx.EVT_CLOSE,self.destroy)
-
-       main_box = wx.BoxSizer(wx.VERTICAL)
+       panel = wx.Panel(window)
        
+       
+       img = wx.Image("headder.jpg", wx.BITMAP_TYPE_ANY)
+       imageCtrl = wx.StaticBitmap(panel, wx.ID_ANY,
+                                         wx.BitmapFromImage(img))
+       imageCtrl.SetBitmap(wx.BitmapFromImage(img))
+       panel.Refresh()
+        
+        
+       main_box = wx.BoxSizer(wx.VERTICAL)
+       main_box.Add(panel, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 4)
        button_box = wx.BoxSizer(wx.HORIZONTAL)
        self.cam_button = wx.Button(window,label="Cam")
        self.cam_button.Bind(wx.EVT_BUTTON, self.play)
@@ -51,7 +57,7 @@ class Main(wx.App):
        window.Show()
        self.SetTopWindow(window)
        self.f = True
-       self.f2 = False
+       self.f2 = True
        self.set_f = False
        return True
    
@@ -141,7 +147,9 @@ class Main(wx.App):
 	   self.thc = th_cam 
 	    
    def play(self,event):
-       self.thc()
+	   if self.f2:
+            self.f2 = False
+            self.thc()
 			
    def toggle_active(self,event):
         if self.f:
@@ -151,11 +159,14 @@ class Main(wx.App):
 			self.active_button.SetLabel("Activate")
 			self.f = True
         print "a"  
-        
+   def set_cam(self):
+	   self.f2 = True
    def set_button_label(self, a):
 	   self.active_button.SetLabel(a)
    def set_entry(self, a):
 	   self.message_entry.SetValue(a)
 	   self.message_entry.Refresh()
    def destroy(self,event):
+       self.f = False
        event.Skip()
+       exit(0)
