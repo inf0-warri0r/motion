@@ -1,6 +1,9 @@
+#Author :Tharindra Galahena
+#Project:security app using webcam
+#Date :
+
 import Image
 import sys
-#import Image
 import sys, os
 import wx
 import time
