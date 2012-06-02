@@ -1,25 +1,14 @@
 #Author :Tharindra Galahena
 #Project:security app using webcam
-#Date :
+#Date   :02/06/2012
 
-import Image
-import sys
-import sys, os
 import wx
-import time
-import opencv
-import thread
-from PIL import Image
-from opencv import highgui 
-import threading
-import os
-import datetime
 import settings
 
 class Main(wx.App):
   
    def OnInit(self):
-       self.tty, self.tp, self.timer, self.sen = settings.read_settings("setings")
+       self.tty, self.tp, self.timer, self.sen = settings.read_settings("settings")
        window = wx.Frame(None, style=wx.DEFAULT_FRAME_STYLE ^ wx.RESIZE_BORDER)
        self.settings_window = wx.Frame(window, style=wx.DEFAULT_FRAME_STYLE ^ wx.RESIZE_BORDER)
        window.SetTitle("inf0_warri0r - motion")
@@ -142,7 +131,7 @@ class Main(wx.App):
 	   self.tp = str(self.tp_entry.GetValue())
 	   self.sen = str(self.sen_sld.GetValue())
 	   
-	   settings.write_settings("setings", self.tty, self.tp, self.timer, str(self.sen))
+	   settings.write_settings("settings", self.tty, self.tp, self.timer, str(self.sen))
    def get_con(self):
 	   return self.f
    def set_fu(self, th_func, th_cam):
@@ -161,7 +150,7 @@ class Main(wx.App):
         else:
 			self.active_button.SetLabel("Activate")
 			self.f = True
-        print "a"  
+ 
    def set_cam(self):
 	   self.f2 = True
    def set_button_label(self, a):

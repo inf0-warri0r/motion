@@ -1,22 +1,12 @@
 #Author :Tharindra Galahena
 #Project:security app using webcam
-#Date   :
+#Date   :02/06/2012
 
 import datetime
-import gobject
-import gettext
-import Image
-import wx
 import time
 import opencv
-import thread
 from PIL import Image
 from opencv import highgui 
-import threading
-import os
-import datetime
-import ui
-import motion
 import sms
 
 camera = highgui.cvCreateCameraCapture(-1)
@@ -46,18 +36,18 @@ def check(pix, pix2, w1, w2, h1, h2):
 				i = i + 1
 	return c
 
-def ditacet(set_label, set_message, get_con, b, num, tty, sens):
+def activate(set_label, set_message, get_con, b, num, tty, sens):
 	
 	w = 15
 	sen = 180
 	try:
 		w = int(b)
 	except:		
-			print "aa"
+			print "error"
 	try:
 		sen = 300 - int(sens)
 	except:		
-			print "aa"
+			print "error"
 	tp_num = num
 	
 	set_label("waiting")
@@ -118,7 +108,6 @@ def ditacet(set_label, set_message, get_con, b, num, tty, sens):
 			if cnt == 1:
 				tmp = camshot
 			if cnt > 1:
-				print "alert" + str(h1) + " " + str(h2)
 				save_images(tmp, camshot)
 				set_message("motion detected!!!")
 				cnt = 0
@@ -129,7 +118,6 @@ def ditacet(set_label, set_message, get_con, b, num, tty, sens):
 				set_message("---------------------")
 		if f:
 			cnt2 = cnt2 + 1 
-			print str(cnt2) + " " + str(cnt)
 			if cnt2 >= 10 and cnt < 2:
 				f = False
 				cnt = 0
@@ -139,7 +127,6 @@ def ditacet(set_label, set_message, get_con, b, num, tty, sens):
 		except:
 			continue	
 		time.sleep(0.1)
-	print "stoped"
 
 
 def save_images(tmp, camshot):

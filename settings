@@ -1,0 +1,4 @@
+tty=/dev/ttyUSB0
+tp=+00000000000
+time=5
+sen=120
